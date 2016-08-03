@@ -1,0 +1,22 @@
+{
+  "name": "fantasy-football-app",
+  "version": "0.0.1",
+  "authors": [
+    "The Boys"
+  ],
+  "description": "Fantasy Football App for The Boys",
+  "main": [
+    "./dist"
+  ],
+  "keywords": [],
+  "license": "",
+  "homepage": "https://the-boys.github.io/fantasy-football-app",
+  "private": false,
+  "ignore": [
+    "*",
+    "!dist/**/*"
+  ],
+  "dependencies": {
+    "angular-base-apps": "~1.2.5"
+  }
+}

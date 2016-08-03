@@ -1,0 +1,1 @@
+!function(){"use strict";angular.module("fantasyfootballapp",["ui.router","ngAnimate","base","base.dynamicRouting","base.dynamicRouting.animations"]),angular.module("fantasyfootballapp").config(["$locationProvider",function(a){a.html5Mode({enabled:!0,requireBase:!1}),a.hashPrefix("!")}])}();
