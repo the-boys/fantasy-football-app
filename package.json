@@ -6,9 +6,10 @@
   ],
   "scripts": {
     "start": "gulp",
-    "publish-patch": "git add --all dist && gulp publish:patch && git add --all dist && git push --follow-tags",
-    "publish-minor": "git add --all dist && gulp publish:minor && git add --all dist && git push --follow-tags",
-    "publish-major": "git add --all dist && gulp publish:major && git add --all dist && git push --follow-tags"
+    "publish-patch": "git add --all dist && gulp publish:patch && git add --all dist && git push --follow-tags && gulp publish:ghpages",
+    "publish-minor": "git add --all dist && gulp publish:minor && git add --all dist && git push --follow-tags && gulp publish:ghpages",
+    "publish-major": "git add --all dist && gulp publish:major && git add --all dist && git push --follow-tags && gulp publish:ghpages",
+    "publish-ghpages": "gulp publish:ghpages"
   },
   "devDependencies": {
     "angular-base-apps": "~1.2.5",

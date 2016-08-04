@@ -289,8 +289,9 @@ gulp.task('publish:patch', ['build:dist', 'bump:patch'], function() { return pub
 gulp.task('publish:minor', ['build:dist', 'bump:minor'], function() { return publish(); });
 gulp.task('publish:major', ['build:dist', 'bump:major'], function() { return publish(); });
 
-gulp.task('publish:docs', function(cb) {
-  return publishDocs(cb);
+gulp.task('publish:ghpages', function() {
+  return gulp.src('./dist/**/*')
+    .pipe($.ghPages());
 });
 
 function bump(importance) {
@@ -310,9 +311,4 @@ function publish() {
     .pipe($.filter('package.json'))
     // **tag it in the repository**
     .pipe($.tagVersion());
-}
-
-function publishDocs(cb) {
-  return gulp.src('./dist/**/*')
-    .pipe($.ghPages());
 }
