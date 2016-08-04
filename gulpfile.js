@@ -37,13 +37,11 @@ var production = false;
 var paths = {
   html: {
     base: [
-      './client/**/*.*',
-      '!./client/templates/**/*.*',
-      '!./client/**/*.scss',
-      '!./client/**/*.js'
+      './client/index.html'
     ],
     templates: [
-      './client/templates/**/*.html'
+      './client/**/*.html',
+      '!./client/index.html'
     ]
   },
   sass: {
@@ -85,6 +83,11 @@ gulp.task('clean:dist', function(cb) {
   rimraf('./dist', cb);
 });
 
+// Clean the routes file
+gulp.task('clean:templates', function(cb) {
+  rimraf('./build/assets/js/routes.js', cb);
+});
+
 // 4. COPYING FILES
 // - - - - - - - - - - - - - - -
 
@@ -104,13 +107,16 @@ gulp.task('copy', function() {
 });
 
 // Copy page templates and generate routes
-gulp.task('copy:templates', ['javascript'], function() {
-  return gulp.src(paths.html.templates)
+gulp.task('copy:templates', ['clean:templates', 'javascript'], function() {
+  return gulp.src(paths.html.templates, {
+    base: './client/'
+  })
     .pipe(routes({
+      angular: true,
       path: 'build/assets/js/routes.js',
       root: 'client'
     }))
-    .pipe(gulp.dest('./build/templates'))
+    .pipe(gulp.dest('./build'))
   ;
 });
 
@@ -193,52 +199,6 @@ gulp.task('server:start:dist', function() {
   });
 });
 
-// 8. TESTING
-// - - - - - - - - - - - - - - -
-
-gulp.task('test:karma', ['build', 'sass'], function(done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, done).start();
-});
-
-gulp.task('test:sass', function() {
-  return gulp.src('./tests/unit/scss/tests.scss')
-    .pipe($.sass({
-      includePaths: paths.sass.testPaths,
-      outputStyle: 'nested',
-      errLogToConsole: true
-    }))
-    .on('data', function(data) {
-      console.log(data.contents.toString());
-    });
-});
-
-gulp.task('test', ['test:karma', 'test:sass'], function() {
-  console.log('Tests finished.');
-});
-
-// Motion testing
-
-gulp.task('test:motion:compile', ['clean', 'sass', 'javascript'], function() {
-  var merged = merge();
-
-  merged.add(gulp.src('./tests/motion/index.html')
-    .pipe(gulp.dest('./build')));
-
-  merged.add(gulp.src('./tests/motion/templates/**/*.html')
-    .pipe(routes({
-      path: 'build/assets/js/routes.js',
-      root: 'tests/motion'
-    }))
-    .pipe(gulp.dest('./build/templates')));
-});
-
-gulp.task('test:motion', ['server:start', 'test:motion:compile'], function() {
-  gulp.watch(['js/**/*', 'tests/motion/**/*'], ['test:motion:compile']);
-});
-
 // 9. DISTRIBUTION BUILD
 // - - - - - - - - - - - - - - -
 
@@ -248,7 +208,8 @@ gulp.task('copy:dist', function() {
   // copy app
   merged.add(gulp.src([
     "./build/index.html",
-    "./build/templates/**/*",
+    "./build/home.html",
+    "./build/teams/**/*",
     "./build/assets/fonts/**/*",
     "./build/assets/img/**/*",
     "./build/assets/css/app.css",
