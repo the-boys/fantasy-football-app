@@ -1,0 +1,15 @@
+<div class="grid-content text-center" ng-if="!editing">
+  <h2 ng-show="!editing">{{ team.name }}</h2>
+  <h6>({{ team.owner }})</h6>
+  <a ng-if="team.url" ng-href="{{ team.url }}">Yahoo Team Page</a>
+  <a class="button" ng-click="startEditing()">Edit</a>
+</div>
+<div class="grid-content text-center" ng-if="editing">
+  <label>Team Name</label>
+  <input type="text" ng-model="team.name"></input>
+  <label>Team Owner</label>
+  <input type="text" ng-model="team.owner"></input>
+  <label>Yahoo Team Url</label>
+  <input type="text" ng-model="team.url"></input>
+  <a class="button" ng-click="stopEditing()">Done</a>
+</div>
