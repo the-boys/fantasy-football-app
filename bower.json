@@ -17,6 +17,7 @@
     "!dist/**/*"
   ],
   "dependencies": {
-    "angular-base-apps": "~1.2.5"
+    "angular-base-apps": "~1.2.5",
+    "angularfire": "^2.0.1"
   }
 }

@@ -65,6 +65,7 @@ var paths = {
       'bower_components/hammerjs/hammer.js'
     ],
     app: [
+      'client/**/*.js',
       'client/app.js'
     ]
   }
@@ -207,9 +208,7 @@ gulp.task('copy:dist', function() {
 
   // copy app
   merged.add(gulp.src([
-    "./build/index.html",
-    "./build/home.html",
-    "./build/teams/**/*",
+    "./build/**/*.html",
     "./build/assets/fonts/**/*",
     "./build/assets/img/**/*",
     "./build/assets/css/app.css",

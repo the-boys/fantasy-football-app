@@ -8,7 +8,10 @@
     // base apps
     'base',
     'base.dynamicRouting',
-    'base.dynamicRouting.animations'
+    'base.dynamicRouting.animations',
+
+    // firebase
+    'firebase'
   ]);
 
   angular.module('fantasyfootballapp').config(function($urlRouterProvider, $locationProvider) {
