@@ -305,9 +305,11 @@ function bump(importance) {
 function publish() {
   return gulp.src(['./package.json', './bower.json', './dist/**/*'])
     // commit the changes
+    .pipe($.git.add())
     .pipe($.git.commit('bump version'))
     // read only one file to get the version number
     .pipe($.filter('package.json'))
     // **tag it in the repository**
-    .pipe($.tagVersion());
+    .pipe($.tagVersion())
+    .pipe($.git.push({args: " --follow-tags"}));
 }

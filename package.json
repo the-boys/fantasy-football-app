@@ -1,17 +1,14 @@
 {
   "name": "fantasy-football-app",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "files": [
     "dist"
   ],
   "scripts": {
     "start": "gulp",
-    "version-patch": "gulp tagversion --release patch && git push --follow-tags",
-    "version-minor": "gulp tagversion --release minor && git push --follow-tags",
-    "version-major": "gulp tagversion --release major && git push --follow-tags",
-    "publish-patch": "gulp publish:patch && git add --all dist && git commit -m 'publishing' && git push --follow-tags && gulp publish:ghpages",
-    "publish-minor": "gulp publish:minor && git add --all dist && git commit -m 'publishing' && git push --follow-tags && gulp publish:ghpages",
-    "publish-major": "gulp publish:major && git add --all dist && git commit -m 'publishing' && git push --follow-tags && gulp publish:ghpages",
+    "publish-patch": "gulp publish:patch && gulp publish:ghpages",
+    "publish-minor": "gulp publish:minor && gulp publish:ghpages",
+    "publish-major": "gulp publish:major && gulp publish:ghpages",
     "publish-ghpages": "gulp publish:ghpages"
   },
   "devDependencies": {
