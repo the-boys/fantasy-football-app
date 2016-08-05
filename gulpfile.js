@@ -284,13 +284,36 @@ gulp.task('bump:patch', function() { return bump('patch'); });
 gulp.task('bump:minor', function() { return bump('minor'); });
 gulp.task('bump:major', function() { return bump('major'); });
 
-gulp.task('publish:patch', ['build:dist', 'bump:patch'], function() { return publish(); });
-gulp.task('publish:minor', ['build:dist', 'bump:minor'], function() { return publish(); });
-gulp.task('publish:major', ['build:dist', 'bump:major'], function() { return publish(); });
+gulp.task('publish:patch', function(cb) {
+  runSequence('build:dist', 'bump:patch', 'build:publish', function() {
+    cb();
+  });
+});
+gulp.task('publish:minor', function(cb) {
+  runSequence('build:dist', 'bump:minor', 'build:publish', function() {
+    cb();
+  });
+});
+gulp.task('publish:major', function(cb) {
+  runSequence('build:dist', 'bump:major', 'build:publish', function() {
+    cb();
+  });
+});
 
 gulp.task('publish:ghpages', function() {
   return gulp.src('./dist/**/*')
     .pipe($.ghPages());
+});
+
+gulp.task('build:publish', function() {
+  return gulp.src(['./package.json', './bower.json', './dist/**/*'])
+    // commit the changes
+    .pipe($.git.add())
+    .pipe($.git.commit('bump version'))
+    // read only one file to get the version number
+    .pipe($.filter('package.json'))
+    // **tag it in the repository**
+    .pipe($.tagVersion());
 });
 
 function bump(importance) {
@@ -300,16 +323,4 @@ function bump(importance) {
     .pipe($.bump({type: importance}))
     // save it back to filesystem
     .pipe(gulp.dest('./'));
-}
-
-function publish() {
-  return gulp.src(['./package.json', './bower.json', './dist/**/*'])
-    // commit the changes
-    .pipe($.git.add())
-    .pipe($.git.commit('bump version'))
-    // read only one file to get the version number
-    .pipe($.filter('package.json'))
-    // **tag it in the repository**
-    .pipe($.tagVersion())
-    .pipe($.git.push({args: " --follow-tags"}));
 }

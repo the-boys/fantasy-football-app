@@ -6,9 +6,9 @@
   ],
   "scripts": {
     "start": "gulp",
-    "publish-patch": "gulp publish:patch && gulp publish:ghpages",
-    "publish-minor": "gulp publish:minor && gulp publish:ghpages",
-    "publish-major": "gulp publish:major && gulp publish:ghpages",
+    "publish-patch": "gulp publish:patch && git push --follow-tags && gulp publish:ghpages",
+    "publish-minor": "gulp publish:minor && git push --follow-tags && gulp publish:ghpages",
+    "publish-major": "gulp publish:major && git push --follow-tags && gulp publish:ghpages",
     "publish-ghpages": "gulp publish:ghpages"
   },
   "devDependencies": {
