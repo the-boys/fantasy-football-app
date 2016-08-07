@@ -33,6 +33,7 @@ var gulp        = require('gulp'),
 // 2. VARIABLES
 // - - - - - - - - - - - - - - -
 var production = false;
+var version = "";
 
 var paths = {
   html: {
@@ -243,7 +244,7 @@ gulp.task('build:dist', function(cb) {
 });
 
 // Build the documentation, start a test server, and re-compile when files change
-gulp.task('default', ['build', 'server:start'], function() {
+gulp.task('default', ['initversion:patch', 'build', 'server:start'], function() {
 
   // Watch static files
   gulp.watch(paths.html.base, ['copy']);
@@ -262,7 +263,7 @@ gulp.task('default', ['build', 'server:start'], function() {
 });
 
 // Build the documentation, start a test server, and re-compile when files change
-gulp.task('default:dist', ['build:dist', 'server:start:dist'], function() {
+gulp.task('default:dist', ['initversion:patch', 'build:dist', 'server:start:dist'], function() {
 
   // Watch static files
   gulp.watch(paths.html.base, ['copy', 'copy:dist']);
@@ -280,9 +281,12 @@ gulp.task('default:dist', ['build:dist', 'server:start:dist'], function() {
   gulp.watch(paths.javascript.app, ['javascript', 'copy:dist']);
 });
 
-gulp.task('bump:patch', function() { return bump('patch'); });
-gulp.task('bump:minor', function() { return bump('minor'); });
-gulp.task('bump:major', function() { return bump('major'); });
+gulp.task('initversion:patch', function() { return initVersion('patch'); });
+gulp.task('initversion:minor', function() { return initVersion('minor'); });
+gulp.task('initversion:major', function() { return initVersion('major'); });
+gulp.task('bump:patch', ['initversion:patch'], function() { return bump(); });
+gulp.task('bump:minor', ['initversion:minor'], function() { return bump(); });
+gulp.task('bump:major', ['initversion:major'], function() { return bump(); });
 
 gulp.task('publish:patch', function(cb) {
   runSequence('build:dist', 'bump:patch', 'build:publish', function() {
@@ -316,11 +320,19 @@ gulp.task('build:publish', function() {
     .pipe($.tagVersion());
 });
 
-function bump(importance) {
+function bump() {
   // get all the files to bump version in
   return gulp.src(['./package.json', './bower.json'])
     // bump the version number in those files
-    .pipe($.bump({type: importance}))
+    .pipe($.bump({key: version}))
     // save it back to filesystem
     .pipe(gulp.dest('./'));
+}
+
+function initVersion(importance) {
+  return gulp.src('./package.json')
+    .pipe($.tap(function(file) {
+      var json = JSON.parse(String(file.contents));
+      version = semver.inc(json.version, importance);
+    }));
 }
