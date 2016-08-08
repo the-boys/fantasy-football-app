@@ -5,8 +5,5 @@
     var ref = firebase.database().ref().child("teams");
     // download the data into a local object
     $scope.teams = $firebaseObject(ref);
-    $scope.teams.$loaded().then(function() {
-      $scope.teams.$resolved = true;
-    });
   });
 })();

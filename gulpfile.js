@@ -64,11 +64,14 @@ var paths = {
       'bower_components/tether/tether.js',
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
-      'bower_components/hammerjs/hammer.js'
+      'bower_components/hammerjs/hammer.js',
+      'bower_components/ng-lodash/build/ng-lodash.js'
     ],
     app: [
-      'client/**/*.js',
-      'client/app.js'
+      'client/bottletrade/bottletrade.js',
+      'client/bottletrade/**/*.js',
+      'client/assets/js/app.js',
+      'client/**/*.js'
     ]
   }
 };
