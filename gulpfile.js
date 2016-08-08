@@ -24,6 +24,7 @@ var gulp        = require('gulp'),
     $           = require('gulp-load-plugins')(),
     rimraf      = require('rimraf'),
     runSequence = require('run-sequence'),
+    semver      = require('semver'),
     modRewrite  = require('connect-modrewrite'),
     routes      = require('./node_modules/angular-base-apps/bin/gulp-dynamic-routing'),
     merge       = require('merge-stream'),
@@ -324,7 +325,7 @@ function bump() {
   // get all the files to bump version in
   return gulp.src(['./package.json', './bower.json'])
     // bump the version number in those files
-    .pipe($.bump({key: version}))
+    .pipe($.bump({version: version}))
     // save it back to filesystem
     .pipe(gulp.dest('./'));
 }
