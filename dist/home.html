@@ -4,11 +4,11 @@
     <a href="https://football.fantasysports.yahoo.com/f1/45826">Yahoo League Page</a>
   </div>
   <div class="grid-content" style="margin-top: 1rem;">
-    <zf-accordion auto-open="false" multi-open="true">
+    <zf-accordion multi-open="true">
       <zf-accordion-item title="Teams">
         <section class="block-list">
           <ul>
-            <li class="with-chevron" ng-repeat="team in teams"><a ui-sref="team({id: '{{ team.id }}'})">{{ team.name }}</a></li>
+            <li class="with-chevron slideInLeft stagger" ng-repeat="team in teams"><a ui-sref="team({id: '{{ team.id }}'})">{{ team.name }}</a></li>
           </ul>
         </section>
       </zf-accordion-item>
