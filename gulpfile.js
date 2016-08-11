@@ -70,10 +70,8 @@ var paths = {
       'bower_components/ng-lodash/build/ng-lodash.js',
       'bower_components/firebase/firebase.js',
       'bower_components/angularfire/dist/angularfire.js',
-      'client/bottletrade/bottletrade.js',
-      'client/bottletrade/**/*.js',
-      'client/assets/js/app.js',
-      'client/**/*.js'
+      'client/**/*.js',
+      'client/app.js'
     ]
   }
 };

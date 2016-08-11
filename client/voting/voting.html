@@ -1,0 +1,32 @@
+---
+name: voting
+url: /voting
+title: Voting
+controller: VotingController
+animationIn: slideInLeft
+animationOut: slideOutRight
+---
+
+<form>
+    <div class="grid-content text-center">
+        <label>Enter new rule:</label>
+        <input type="text" placeholder="New Rule" ng-model="newRule">
+        <a class="button" ng-click="submitRule()">Submit</a> 
+    </div>
+</form>
+
+<span id="luck" class="fadeIn slideOutRight" ng-repeat="rule in rules">[{{$index + 1}}] {{ rule.text }}
+<div class="small-12 medium-6 grid-content">
+   <form>   
+    <label>Cast Your Vote</label>
+      <input type="radio" name="boolean" ng-value="true" ng-model="rule.vote"> Yes
+      <input type="radio" name="boolean" ng-value="false" ng-model="rule.vote"> No
+      <a class="small button" ng-click="submitVote(rule)">Submit</a> 
+    <span>Yes votes = {{rule.voteYes}}</span>
+    <span>No votes = {{rule.voteNo}}</span>
+    <a class="small button" ng-click="deleteVote(rule)">Delete</a>
+    </form>
+</div>
+</span>
+
+       
