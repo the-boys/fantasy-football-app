@@ -30,15 +30,16 @@
             <span class="left"><a href="#"></a></span>
             <span class="right">
                 <div class="menu-group primary">
-                    <div class="menu-group-right" class="menuRight">
-                        <ul class="icon-left primary menu-bar" class="menuRight">
-                            <li class="menuRight"><a ui-sref="voting">Voting</a></li>
-                            <li class="menuRight"><a ui-sref="login">Login</a></li>
-                            <li class="menuRight"><a ui-sref="signUp">Sign Up</a></li>
+                    <div class="menu-group-right">
+                        <ul class="icon-left primary menu-bar">
+                            <li><a ui-sref="champions">Champions</a></li>
+                            <li><a ui-sref="voting">Voting</a></li>
+                            <li ng-if="!$root.user"><a ui-sref="account({login: true})">Login</a></li>
+                            <li ng-if="$root.user"><a ui-sref="account({logout: true})">Logout</a></li>
                         </ul>
-                    </div> 
+                    </div>
                 </div>
-            </span> 
+            </span>
           </div>
         </div>
         <div class="grid-block">
@@ -49,8 +50,8 @@
     </div>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/base-apps-dep.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/angular-base-apps/1.2.6/base-apps.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/angular-base-apps/1.2.6/base-apps-templates.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/angular-base-apps/1.2.7-3/base-apps.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/angular-base-apps/1.2.7-3/base-apps-templates.min.js"></script>
     <script type="text/javascript" src="assets/js/routes.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>
     <script>

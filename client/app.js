@@ -29,4 +29,15 @@
 
     $locationProvider.hashPrefix('!');
   });
+
+  angular.module('fantasyfootballapp').run(function($firebaseAuth, $rootScope) {
+    $firebaseAuth().$waitForSignIn().then(function(user) {
+      $rootScope.user = user;
+    });
+
+    // handle updates to authentication
+    $firebaseAuth().$onAuthStateChanged(function(user) {
+      $rootScope.user = user;
+    });
+  });
 })();
