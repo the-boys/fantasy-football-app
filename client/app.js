@@ -4,6 +4,7 @@
   angular.module('fantasyfootballapp', [
     'ui.router',
     'ngAnimate',
+    'ngLodash',
 
     // base apps
     'base',

@@ -1,6 +1,6 @@
 ---
 name: autodrafter
-url: /autodrafter
+url: /autodrafter?:count
 title: Auto Drafter
 controller: AutodrafterController
 animationIn: slideInRight
@@ -19,21 +19,24 @@ animationOut: slideOutLeft
           <th>Position</th>
           <th>Name</th>
           <th>Projections</th>
+          <th>Ranking</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="player in players | orderBy:['-taken','-projections']">
+        <tr ng-repeat="player in players | orderBy:['-taken',getRanking]:true">
           <td><a ng-click="editPlayer(player)"><img ba-iconic icon="cog" size="small"></img></a></td>
           <td><input type="checkbox" ng-model="player.taken" ng-change="updatePlayer(player)"></input></td>
           <td>{{ player.position }}</td>
           <td>{{ player.name }}</td>
           <td>{{ player.projections }}</td>
+          <td>{{ getRanking(player) | number:2 }}</td>
         </tr>
         <tr ng-if="newPlayer">
           <td></td>
           <td><select ng-model="newPlayer.position" ng-options="opt for opt in ['QB','RB','WR','TE']"></input></td>
           <td><input type="text" ng-model="newPlayer.name"></input></td>
           <td><input type="number" ng-model="newPlayer.projections"></input></td>
+          <td></td>
         </tr>
       </tbody>
     </table>
