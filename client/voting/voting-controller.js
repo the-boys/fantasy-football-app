@@ -30,7 +30,6 @@
         if(rule.vote == false){
             rule.voteNo++;
         }
-        console.log({{example.text}});
        
       $scope.rules.$save(rule);
         
