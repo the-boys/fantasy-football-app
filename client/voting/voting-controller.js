@@ -4,10 +4,10 @@
   angular.module('fantasyfootballapp').controller("VotingController", function($scope, $state, $stateParams, $firebaseArray) {
       var ref = firebase.database().ref().child("rules");
         // download the data into a local object
-        $scope.rules = $firebaseArray(ref);
+      $scope.rules = $firebaseArray(ref);
       $scope.newRule = "";
-      $scope.voteYes = 0;
-      $scope.voteNo = 0;
+      $scope.voted = [];
+      
      
       
     $scope.submitRule = function() {
@@ -30,8 +30,10 @@
         if(rule.vote == false){
             rule.voteNo++;
         }
+        console.log({{example.text}});
        
       $scope.rules.$save(rule);
+        
     };
       
     $scope.deleteVote = function(rule){
