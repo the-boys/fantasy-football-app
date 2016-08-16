@@ -7,8 +7,13 @@
 
     // base apps
     'base',
-    'base.dynamicRouting',
-    'base.dynamicRouting.animations',
+
+    // icons
+    'angularIcons.iconic',
+
+    // dynamic routing
+    'dynamicRouting',
+    'dynamicRouting.animations',
 
     // firebase
     'firebase'

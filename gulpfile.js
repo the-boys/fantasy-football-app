@@ -26,7 +26,7 @@ var gulp        = require('gulp'),
     runSequence = require('run-sequence'),
     semver      = require('semver'),
     modRewrite  = require('connect-modrewrite'),
-    routes      = require('./node_modules/angular-base-apps/bin/gulp-dynamic-routing'),
+    routes      = require('angular-front-router'),
     merge       = require('merge-stream'),
     octophant   = require('octophant'),
     Server      = require('karma').Server;
@@ -64,7 +64,11 @@ var paths = {
       'bower_components/tether/tether.js',
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
-      'bower_components/hammerjs/hammer.js'
+      'bower_components/hammerjs/hammer.js',
+      'node_modules/angular-icons/lib/iconic.min.js',
+      'node_modules/angular-icons/iconic.js',
+      'node_modules/angular-dynamic-routing/dynamicRouting.js',
+      'node_modules/angular-dynamic-routing/dynamicRouting.animations.js'
     ],
     app: [
       'bower_components/ng-lodash/build/ng-lodash.js',
@@ -106,7 +110,7 @@ gulp.task('copy', function() {
   })
     .pipe(gulp.dest('build')));
 
-  merged.add(gulp.src('./node_modules/angular-base-apps/iconic/**/*')
+  merged.add(gulp.src('./node_modules/angular-icons/icons/iconic/**/*')
     .pipe(gulp.dest('build/assets/img/iconic/')));
 
   return merged;
@@ -118,9 +122,10 @@ gulp.task('copy:templates', ['clean:templates', 'javascript'], function() {
     base: './client/'
   })
     .pipe(routes({
-      angular: true,
       path: 'build/assets/js/routes.js',
-      root: 'client'
+      root: 'client',
+      placeholder: '<routes>',
+      template: "angular.module('dynamicRouting').config(['$FoundationStateProvider', function(FoundationStateProvider){ FoundationStateProvider.registerDynamicRoutes(<routes>); }]);"
     }))
     .pipe(gulp.dest('./build'))
   ;
@@ -162,7 +167,7 @@ gulp.task('sass', function() {
 // 6. JAVASCRIPT
 // - - - - - - - - - - - - - - -
 
-// Compile Foundation JavaScript
+// Compile Base Apps JavaScript
 gulp.task('javascript', function() {
   var merged = merge();
 
