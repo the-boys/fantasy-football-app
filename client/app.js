@@ -11,6 +11,9 @@
 
     // icons
     'angularIcons.iconic',
+    'angularIcons.openIconic',
+    'angularIcons.materialIcons',
+    'angularIcons.ionicons',
 
     // dynamic routing
     'dynamicRouting',

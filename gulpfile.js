@@ -65,8 +65,11 @@ var paths = {
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/hammerjs/hammer.js',
-      'node_modules/angular-icons/lib/iconic.min.js',
-      'node_modules/angular-icons/iconic.js',
+      'node_modules/angular-icons/dist/lib/iconic.min.js',
+      'node_modules/angular-icons/dist/iconic.js',
+      'node_modules/angular-icons/dist/open-iconic.js',
+      'node_modules/angular-icons/dist/material-icons.js',
+      'node_modules/angular-icons/dist/ionicons.js',
       'node_modules/angular-dynamic-routing/dynamicRouting.js',
       'node_modules/angular-dynamic-routing/dynamicRouting.animations.js'
     ],
