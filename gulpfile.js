@@ -129,8 +129,7 @@ gulp.task('copy:templates', ['clean:templates', 'javascript'], function() {
     .pipe(routes({
       path: 'build/assets/js/routes.js',
       root: 'client',
-      placeholder: '<routes>',
-      template: "angular.module('dynamicRouting').config(['$BaseAppsStateProvider', function(BaseAppsStateProvider){ BaseAppsStateProvider.registerDynamicRoutes(<routes>); }]);"
+      library: 'angular'
     }))
     .pipe(gulp.dest('./build'))
   ;
