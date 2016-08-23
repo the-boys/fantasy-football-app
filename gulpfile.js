@@ -26,7 +26,7 @@ var gulp        = require('gulp'),
     runSequence = require('run-sequence'),
     semver      = require('semver'),
     modRewrite  = require('connect-modrewrite'),
-    routes      = require('angular-front-router'),
+    routes      = require('base-apps-router'),
     merge       = require('merge-stream'),
     octophant   = require('octophant'),
     Server      = require('karma').Server;
@@ -71,7 +71,9 @@ var paths = {
       'node_modules/angular-icons/dist/material-icons.js',
       'node_modules/angular-icons/dist/ionicons.js',
       'node_modules/angular-dynamic-routing/dynamicRouting.js',
-      'node_modules/angular-dynamic-routing/dynamicRouting.animations.js'
+      'node_modules/angular-dynamic-routing/dynamicRouting.animations.js',
+      'bower_components/angular-base-apps/dist/js/base-apps.js',
+      'bower_components/angular-base-apps/dist/js/base-apps-templates.js'
     ],
     app: [
       'bower_components/ng-lodash/build/ng-lodash.js',
@@ -176,7 +178,7 @@ gulp.task('javascript', function() {
 
   merged.add(gulp.src(paths.javascript.libs)
     .pipe($.if(production, $.uglify()))
-    .pipe($.concat('base-apps-dep.js'))
+    .pipe($.concat('base-apps.js'))
     .pipe(gulp.dest('./build/assets/js/')));
 
   merged.add(gulp.src(paths.javascript.app)
@@ -226,7 +228,7 @@ gulp.task('copy:dist', function() {
     "./build/assets/img/**/*",
     "./build/assets/css/app.css",
     "./build/assets/js/app.js",
-    "./build/assets/js/base-apps-dep.js",
+    "./build/assets/js/base-apps.js",
     "./build/assets/js/routes.js",
     "./build/assets/js/templates.js"
   ], {
