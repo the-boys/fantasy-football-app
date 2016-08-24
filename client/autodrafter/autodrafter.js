@@ -5,7 +5,7 @@
     var ref = firebase.database().ref().child("autodrafter").child("players");
     $scope.players = $firebaseArray(ref);
     $scope.newPlayer = null;
-    $scope.teamCount = $stateParams.count || 4;
+    $scope.teamCount = $stateParams.count || 12;
 
     $scope.addPlayer = function() {
       $scope.newPlayer = {
