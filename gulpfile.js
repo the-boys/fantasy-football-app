@@ -79,8 +79,8 @@ var paths = {
       'bower_components/ng-lodash/build/ng-lodash.js',
       'bower_components/firebase/firebase.js',
       'bower_components/angularfire/dist/angularfire.js',
-      'client/**/*.js',
-      'client/app.js'
+      'client/app.js',
+      'client/**/*.js'
     ]
   }
 };
