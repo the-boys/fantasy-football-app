@@ -57,7 +57,6 @@ animationOut: slideOutLeft
           </thead>
           <tbody>
             <tr ng-repeat="player in players | orderBy:['-position',getRanking]:true">
-            
               <td><a ng-click="editPlayer(player)"><img ba-iconic icon="cog" size="small"></a></td>
               <td><input type="checkbox" ng-model="player.taken" ng-change="updatePlayer(player)"></td>
               <td>{{ player.position }}</td>
