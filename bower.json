@@ -17,7 +17,7 @@
     "!dist/**/*"
   ],
   "dependencies": {
-    "angular-base-apps": "1.2.7-8",
+    "angular-base-apps": "~2.0.0",
     "angularfire": "^2.0.1",
     "angular-resource": "^1.5.8",
     "ng-lodash": "~0.5.0"

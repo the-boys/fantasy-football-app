@@ -72,8 +72,7 @@ var paths = {
       'node_modules/angular-icons/dist/ionicons.js',
       'node_modules/angular-dynamic-routing/dynamicRouting.js',
       'node_modules/angular-dynamic-routing/dynamicRouting.animations.js',
-      'bower_components/angular-base-apps/dist/js/base-apps.js',
-      'bower_components/angular-base-apps/dist/js/base-apps-templates.js'
+      'bower_components/angular-base-apps/dist/js/base-apps.js'
     ],
     app: [
       'bower_components/ng-lodash/build/ng-lodash.js',
